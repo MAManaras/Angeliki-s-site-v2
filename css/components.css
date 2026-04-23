@@ -146,6 +146,33 @@
   box-shadow: var(--shadow-lg);
   border-color: var(--border-soft);
 }
+
+/* ---------- Frosted-glass variant ---------- */
+.card--frost {
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.62),
+              rgba(253, 248, 243, 0.50));
+  backdrop-filter: blur(18px) saturate(135%);
+  -webkit-backdrop-filter: blur(18px) saturate(135%);
+  border-color: rgba(255, 255, 255, 0.55);
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.6) inset,
+    0 2px 8px rgba(35,27,23,0.05),
+    0 20px 40px -20px rgba(35,27,23,0.18);
+}
+.card--frost:hover {
+  background: linear-gradient(135deg,
+              rgba(255, 255, 255, 0.72),
+              rgba(253, 248, 243, 0.58));
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.7) inset,
+    0 4px 14px rgba(35,27,23,0.07),
+    0 30px 60px -24px rgba(160,103,77,0.30);
+}
+.card--frost::after {
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 0%),
+              rgba(212, 168, 83, 0.22), transparent 60%);
+}
 .card:hover::before { transform: scaleX(1); }
 .card:hover::after  { opacity: 1; }
 
@@ -529,10 +556,19 @@
 
 .lang-switch__btn:hover { color: var(--accent); }
 
+/* Soft neumorphic inset when NOT active (gives a 'pressed-well' cue) */
+.lang-switch__btn:not(.is-active) {
+  box-shadow:
+    inset 1px 1px 2px rgba(35, 27, 23, 0.08),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.6);
+}
+
 .lang-switch__btn.is-active {
   background: var(--gradient-warm);
   color: var(--color-white);
-  box-shadow: var(--shadow-xs);
+  box-shadow:
+    var(--shadow-xs),
+    inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 /* Phone CTA in header */
@@ -831,7 +867,7 @@
   height: 140px;
   display: grid;
   place-items: center;
-  z-index: 2;
+  z-index: 3;
   user-select: none;
   pointer-events: auto;
 }
@@ -1163,4 +1199,125 @@
   font-size: var(--font-size-sm);
   color: var(--color-beige-300);
   opacity: 0.8;
+}
+
+/* =========================================================
+   Depth & materiality extras
+   ========================================================= */
+
+/* Parallax wrappers — transform set by JS via --py var,
+   so inner element is free to run its own animation. */
+.parallax-layer {
+  position: absolute;
+  pointer-events: none;
+  will-change: transform;
+  transform: translate3d(0, var(--py, 0px), 0);
+}
+.parallax-layer--far  { inset: 0; z-index: 0; }
+.parallax-layer--near { inset: 0; z-index: 2; }
+
+/* Foreground decorative leaf — near/fast parallax layer */
+.hero__leaf-fg {
+  position: absolute;
+  bottom: -6%;
+  left: 4%;
+  width: clamp(110px, 12vw, 160px);
+  height: auto;
+  opacity: 0.72;
+  filter: drop-shadow(0 12px 24px rgba(35, 27, 23, 0.25));
+  animation: leafSwing 9s ease-in-out infinite;
+  transform-origin: 50% 0%;
+  will-change: transform;
+}
+@keyframes leafSwing {
+  0%, 100% { transform: rotate(-6deg); }
+  50%      { transform: rotate(6deg); }
+}
+
+/* Soft neumorphic inset on form focus (tactile recess) */
+.form__input:focus,
+.form__select:focus,
+.form__textarea:focus {
+  box-shadow:
+    var(--focus-ring),
+    inset 2px 2px 4px rgba(35, 27, 23, 0.05),
+    inset -1px -1px 2px rgba(255, 255, 255, 0.7);
+}
+
+/* =========================================================
+   Micro-interactions
+   ========================================================= */
+
+/* Magnetic buttons — JS sets --mag-x/--mag-y on cursor proximity.
+   We bake them into the transform so hover + tap still work. */
+.btn[data-magnetic] {
+  --mag-x: 0px;
+  --mag-y: 0px;
+  transform: translate3d(var(--mag-x), var(--mag-y), 0);
+  transition:
+    transform 220ms var(--ease-out),
+    box-shadow var(--transition-normal),
+    background-color var(--transition-fast),
+    color var(--transition-fast);
+}
+.btn[data-magnetic]:hover {
+  transform:
+    translate3d(var(--mag-x), var(--mag-y), 0)
+    translateY(-2px);
+}
+.btn[data-magnetic]:active {
+  transform:
+    translate3d(var(--mag-x), var(--mag-y), 0)
+    scale(0.97);
+}
+
+/* Spotlight — nearest paragraph brightens via radial glow behind */
+[data-spotlight] {
+  position: relative;
+  transition: color 400ms var(--ease-out);
+  z-index: 0;
+}
+[data-spotlight]::before {
+  content: '';
+  position: absolute;
+  inset: -18px -24px;
+  border-radius: var(--radius-lg);
+  background: radial-gradient(ellipse at var(--px, 50%) var(--py, 50%),
+              rgba(212, 168, 83, 0.22),
+              rgba(212, 168, 83, 0.08) 40%,
+              transparent 70%);
+  opacity: 0;
+  transition: opacity 350ms var(--ease-out);
+  pointer-events: none;
+  z-index: -1;
+}
+[data-spotlight].is-lit::before { opacity: 1; }
+[data-spotlight].is-lit { color: var(--text-primary); }
+
+/* Word-by-word text reveal (for section leads) */
+.split-text .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 600ms var(--ease-out),
+    transform 600ms var(--ease-out);
+  transition-delay: calc(var(--word-index, 0) * 35ms);
+  will-change: opacity, transform;
+}
+.split-text.is-revealed .word {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Haptic tap feedback — universal scale on touch for any .btn, link, card */
+.is-tapped {
+  transform: scale(0.98) !important;
+  transition: transform 80ms var(--ease-out) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-text .word { opacity: 1; transform: none; transition: none; }
+  .hero__leaf-fg { animation: none; }
+  .parallax-layer { transform: none !important; }
 }

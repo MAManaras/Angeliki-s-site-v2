@@ -79,10 +79,10 @@
       <div class="hero__content container">
         <span class="hero__eyebrow" data-i18n="hero.eyebrow">Κέντρο Ψυχοθεραπείας</span>
         <h1 class="hero__title" data-i18n="hero.title">Ένας ασφαλής χώρος<br>για εσάς</h1>
-        <p class="hero__subtitle" data-i18n="hero.subtitle">Προσφέρουμε ολοκληρωμένη ψυχοθεραπευτική υποστήριξη σε ένα ζεστό και φιλόξενο περιβάλλον, προσαρμοσμένη στις ανάγκες κάθε ατόμου και ζευγαριού.</p>
+        <p class="hero__subtitle" data-split data-i18n="hero.subtitle">Προσφέρουμε ολοκληρωμένη ψυχοθεραπευτική υποστήριξη σε ένα ζεστό και φιλόξενο περιβάλλον, προσαρμοσμένη στις ανάγκες κάθε ατόμου και ζευγαριού.</p>
         <div class="hero__actions">
-          <a href="#contact" class="btn btn--primary" data-i18n="hero.cta_contact">Επικοινωνήστε μαζί μας</a>
-          <a href="#about" class="btn btn--white" data-i18n="hero.cta_learn">Μάθετε περισσότερα</a>
+          <a href="#contact" class="btn btn--primary" data-magnetic data-i18n="hero.cta_contact">Επικοινωνήστε μαζί μας</a>
+          <a href="#about" class="btn btn--white" data-magnetic data-i18n="hero.cta_learn">Μάθετε περισσότερα</a>
         </div>
       </div>
       <!-- Scroll hint -->
@@ -99,27 +99,45 @@
         </div>
       </div>
 
-      <!-- Organic morphing blobs (replaces geometric leaf) -->
-      <svg class="hero__blob hero__blob--left" viewBox="0 0 600 600" fill="none" aria-hidden="true">
-        <path fill="rgba(212,168,83,0.55)">
-          <animate attributeName="d" dur="14s" repeatCount="indefinite"
-            values="
-              M421,331Q391,412,308,441Q225,470,158,410Q91,350,114,264Q137,178,219,148Q301,118,372,166Q443,214,433,272Q423,330,421,331Z;
-              M438,319Q418,388,345,431Q272,474,192,436Q112,398,114,305Q116,212,190,163Q264,114,344,144Q424,174,442,247Q460,320,438,319Z;
-              M410,306Q376,372,306,408Q236,444,169,396Q102,348,118,264Q134,180,214,143Q294,106,372,148Q450,190,438,248Q426,306,410,306Z;
-              M421,331Q391,412,308,441Q225,470,158,410Q91,350,114,264Q137,178,219,148Q301,118,372,166Q443,214,433,272Q423,330,421,331Z" />
-        </path>
-      </svg>
-      <svg class="hero__blob hero__blob--right" viewBox="0 0 600 600" fill="none" aria-hidden="true">
-        <path fill="rgba(160,103,77,0.45)">
-          <animate attributeName="d" dur="18s" repeatCount="indefinite"
-            values="
-              M436,312Q414,374,349,416Q284,458,201,424Q118,390,124,299Q130,208,208,168Q286,128,362,160Q438,192,452,252Q466,312,436,312Z;
-              M402,298Q369,356,306,402Q243,448,171,404Q99,360,121,275Q143,190,222,150Q301,110,378,146Q455,182,450,240Q445,298,402,298Z;
-              M420,325Q393,394,317,426Q241,458,167,412Q93,366,113,280Q133,194,213,152Q293,110,372,152Q451,194,448,259Q445,324,420,325Z;
-              M436,312Q414,374,349,416Q284,458,201,424Q118,390,124,299Q130,208,208,168Q286,128,362,160Q438,192,452,252Q466,312,436,312Z" />
-        </path>
-      </svg>
+      <!-- ====== Layered parallax ======
+           Distant: organic blobs drifting behind content (slow)
+           Mid:     hero content (no parallax)
+           Near:    foreground leaf (fast) -->
+
+      <!-- Distant layer (slow parallax) -->
+      <div class="parallax-layer parallax-layer--far" data-parallax="0.15">
+        <svg class="hero__blob hero__blob--left" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+          <path fill="rgba(212,168,83,0.55)">
+            <animate attributeName="d" dur="14s" repeatCount="indefinite"
+              values="
+                M421,331Q391,412,308,441Q225,470,158,410Q91,350,114,264Q137,178,219,148Q301,118,372,166Q443,214,433,272Q423,330,421,331Z;
+                M438,319Q418,388,345,431Q272,474,192,436Q112,398,114,305Q116,212,190,163Q264,114,344,144Q424,174,442,247Q460,320,438,319Z;
+                M410,306Q376,372,306,408Q236,444,169,396Q102,348,118,264Q134,180,214,143Q294,106,372,148Q450,190,438,248Q426,306,410,306Z;
+                M421,331Q391,412,308,441Q225,470,158,410Q91,350,114,264Q137,178,219,148Q301,118,372,166Q443,214,433,272Q423,330,421,331Z" />
+          </path>
+        </svg>
+        <svg class="hero__blob hero__blob--right" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+          <path fill="rgba(160,103,77,0.45)">
+            <animate attributeName="d" dur="18s" repeatCount="indefinite"
+              values="
+                M436,312Q414,374,349,416Q284,458,201,424Q118,390,124,299Q130,208,208,168Q286,128,362,160Q438,192,452,252Q466,312,436,312Z;
+                M402,298Q369,356,306,402Q243,448,171,404Q99,360,121,275Q143,190,222,150Q301,110,378,146Q455,182,450,240Q445,298,402,298Z;
+                M420,325Q393,394,317,426Q241,458,167,412Q93,366,113,280Q133,194,213,152Q293,110,372,152Q451,194,448,259Q445,324,420,325Z;
+                M436,312Q414,374,349,416Q284,458,201,424Q118,390,124,299Q130,208,208,168Q286,128,362,160Q438,192,452,252Q466,312,436,312Z" />
+          </path>
+        </svg>
+      </div>
+
+      <!-- Near layer (fast parallax): foreground leaf -->
+      <div class="parallax-layer parallax-layer--near" data-parallax="0.45">
+        <svg class="hero__leaf-fg" viewBox="0 0 120 200" fill="none" aria-hidden="true">
+          <path d="M60 4 C60 4 10 55 12 118 C14 165 45 192 60 196 C75 192 106 165 108 118 C110 55 60 4 60 4 Z"
+                fill="rgba(212,168,83,0.75)" stroke="rgba(160,103,77,0.4)" stroke-width="1.2"/>
+          <path d="M60 14 L60 186" stroke="rgba(125,79,58,0.6)" stroke-width="1.4" stroke-linecap="round"/>
+          <path d="M60 60 C48 70 40 80 32 96 M60 60 C72 70 80 80 88 96 M60 110 C48 120 40 130 32 146 M60 110 C72 120 80 130 88 146"
+                stroke="rgba(125,79,58,0.4)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
     </section>
 
     <!-- ====== ABOUT ====== -->
@@ -128,7 +146,7 @@
         <div class="split reveal">
           <div class="split__content">
             <h2 data-i18n="about.title">Σχετικά με εμάς</h2>
-            <p class="about__lead" data-i18n="about.lead">Το κέντρο μας δημιουργήθηκε με σκοπό να προσφέρει ένα ασφαλές, ζεστό και επαγγελματικό πλαίσιο ψυχοθεραπευτικής υποστήριξης.</p>
+            <p class="about__lead" data-spotlight data-split data-i18n="about.lead">Το κέντρο μας δημιουργήθηκε με σκοπό να προσφέρει ένα ασφαλές, ζεστό και επαγγελματικό πλαίσιο ψυχοθεραπευτικής υποστήριξης.</p>
             <p data-i18n="about.text">Πιστεύουμε ότι κάθε άνθρωπος αξίζει πρόσβαση σε ποιοτική ψυχική υγεία. Η ομάδα μας αποτελείται από έμπειρους επαγγελματίες ψυχικής υγείας που εργάζονται με σεβασμό, εμπιστευτικότητα και επιστημονική τεκμηρίωση. Προσφέρουμε ατομική ψυχοθεραπεία, θεραπεία ζεύγους και online συνεδρίες, προσαρμοσμένες στις μοναδικές ανάγκες κάθε ανθρώπου.</p>
             <a href="about.html" class="btn btn--secondary" style="margin-top: var(--space-8);" data-i18n="about.cta">Περισσότερα για εμάς</a>
           </div>
@@ -157,7 +175,7 @@
 
         <div class="grid grid--3 reveal-group">
           <!-- Service 1: Individual -->
-          <div class="card">
+          <div class="card card--frost">
             <div class="card__icon">
               <svg viewBox="0 0 56 56" fill="none" aria-hidden="true">
                 <circle cx="28" cy="18" r="10" stroke="currentColor" stroke-width="2"/>
@@ -173,7 +191,7 @@
           </div>
 
           <!-- Service 2: Couple -->
-          <div class="card">
+          <div class="card card--frost">
             <div class="card__icon">
               <svg viewBox="0 0 56 56" fill="none" aria-hidden="true">
                 <circle cx="20" cy="18" r="8" stroke="currentColor" stroke-width="2"/>
@@ -190,7 +208,7 @@
           </div>
 
           <!-- Service 3: Online -->
-          <div class="card">
+          <div class="card card--frost">
             <div class="card__icon">
               <svg viewBox="0 0 56 56" fill="none" aria-hidden="true">
                 <rect x="6" y="8" width="44" height="30" rx="3" stroke="currentColor" stroke-width="2"/>
@@ -219,7 +237,7 @@
 
         <div class="grid grid--2 reveal-group">
           <!-- Team Member 1: Αγγελική Αποστολοπούλου -->
-          <div class="card team-card">
+          <div class="card card--frost team-card">
             <div class="team-card__photo">
               <img src="assets/images/team/angeliki-apostolopoulou.jpg" alt="Αγγελική Αποστολοπούλου">
             </div>
@@ -229,7 +247,7 @@
           </div>
 
           <!-- Team Member 2 -->
-          <div class="card team-card">
+          <div class="card card--frost team-card">
             <div class="team-card__photo">ΧΨ</div>
             <h3 class="team-card__name" data-i18n="team.member2.name">[Όνομα Επώνυμο]</h3>
             <p class="team-card__role" data-i18n="team.member2.role">[Ειδικότητα]</p>
@@ -471,6 +489,7 @@
   <script src="js/accordion.js"></script>
   <script src="js/form.js"></script>
   <script src="js/animations.js"></script>
+  <script src="js/interactions.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
