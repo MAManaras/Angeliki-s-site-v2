@@ -25,6 +25,61 @@
     radial-gradient(circle at 90% 90%, rgba(212, 168, 83, 0.06), transparent 45%);
 }
 
+/* Aurora: slow-moving conic-gradient mesh tied to brand palette.
+   Sits behind content; gently drifts and rotates. */
+.section--alt::before,
+.section--aurora::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 0deg at 30% 40%,
+      rgba(212, 168, 83, 0.14),
+      rgba(190, 131, 102, 0.10),
+      rgba(160, 103, 77, 0.12),
+      rgba(245, 237, 227, 0)   45%,
+      rgba(212, 168, 83, 0.14) 100%
+    );
+  filter: blur(40px) saturate(115%);
+  opacity: 0.75;
+  animation: auroraDrift 40s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.section--alt > .container,
+.section--aurora > .container {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes auroraDrift {
+  0%   { transform: rotate(0deg)   translate3d(0, 0, 0)   scale(1); }
+  50%  { transform: rotate(180deg) translate3d(2%, -2%, 0) scale(1.08); }
+  100% { transform: rotate(360deg) translate3d(0, 0, 0)   scale(1); }
+}
+
+/* Stronger variant for hero-adjacent or featured sections */
+.section--aurora {
+  background-color: var(--bg-section-alt);
+  isolation: isolate;
+}
+.section--aurora::before {
+  opacity: 1;
+  background:
+    conic-gradient(
+      from 45deg at 70% 30%,
+      rgba(212, 168, 83, 0.22),
+      rgba(190, 131, 102, 0.18),
+      rgba(160, 103, 77, 0.20),
+      rgba(245, 237, 227, 0)   50%,
+      rgba(212, 168, 83, 0.22) 100%
+    );
+}
+
 .section--dark {
   background-color: var(--bg-dark);
   color: var(--color-white);

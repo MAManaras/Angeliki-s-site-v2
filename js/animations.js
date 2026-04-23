@@ -47,6 +47,46 @@
     });
   });
 
+  /* ---------- 4-7-8 breathing orb label sync ----------
+     Cycle total 19s: Inhale 4s → Hold 7s → Exhale 8s. */
+  var orbText = document.querySelector('[data-breathing-text]');
+  if (orbText) {
+    var phaseKeys = ['inhale', 'hold', 'exhale'];
+    var phaseDurations = [4000, 7000, 8000]; // ms
+    var cycleStart = performance.now();
+    var currentPhase = -1;
+    function i18nText(key) {
+      // Prefer live translation lookup if i18n module is ready
+      if (window.i18n && typeof window.i18n.t === 'function') {
+        var value = window.i18n.t('hero.breathe.' + key);
+        if (value) return value;
+      }
+      // Fallback based on current document language
+      var isEl = (document.documentElement.lang || 'el').indexOf('el') === 0;
+      var fallback = {
+        inhale: isEl ? 'Εισπνοή' : 'Inhale',
+        hold:   isEl ? 'Κράτηση' : 'Hold',
+        exhale: isEl ? 'Εκπνοή'  : 'Exhale'
+      };
+      return fallback[key];
+    }
+    function tick(now) {
+      var elapsed = (now - cycleStart) % 19000;
+      var phase = elapsed < 4000 ? 0 : elapsed < 11000 ? 1 : 2;
+      if (phase !== currentPhase) {
+        currentPhase = phase;
+        orbText.textContent = i18nText(phaseKeys[phase]);
+        orbText.setAttribute('data-i18n', 'hero.breathe.' + phaseKeys[phase]);
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    // Re-sync on language change
+    window.addEventListener('i18n:changed', function () {
+      currentPhase = -1; // force refresh on next tick
+    });
+  }
+
   /* ---------- Subtle parallax for decorative elements ---------- */
   var parallaxEls = document.querySelectorAll('[data-parallax]');
   if (parallaxEls.length) {

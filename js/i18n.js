@@ -104,6 +104,9 @@
 
     // Update html lang attribute
     document.documentElement.setAttribute('lang', currentLang);
+
+    // Notify other modules that translations were (re)applied
+    window.dispatchEvent(new CustomEvent('i18n:changed', { detail: { lang: currentLang } }));
   }
 
   // Set language
@@ -148,5 +151,11 @@
     getCurrentLang: function () {
       return currentLang;
     },
+    t: function (key) {
+      var data = translations[currentLang];
+      if (!data) return null;
+      return resolve(data, key);
+    },
   };
+
 })();

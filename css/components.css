@@ -652,19 +652,23 @@
   isolation: isolate;
 }
 
-/* Background image with subtle slow Ken Burns motion */
+/* Background image with breath-cycle motion (inhale 4s / exhale 6s) */
 .hero::before {
   content: '';
   position: absolute;
   inset: -4%;
   background: url('../assets/images/hero-bg.jpg') center center / cover no-repeat;
   z-index: -2;
-  animation: heroKenBurns 24s ease-in-out infinite alternate;
+  animation: heroBreathe 10s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
-@keyframes heroKenBurns {
-  from { transform: scale(1) translate3d(0, 0, 0); }
-  to   { transform: scale(1.08) translate3d(1%, -1%, 0); }
+@keyframes heroBreathe {
+  /* inhale 0 → 40% (4s) — gentle expansion + brightening */
+  0%   { transform: scale(1.00); opacity: 0.85; }
+  40%  { transform: scale(1.045); opacity: 1; }
+  /* exhale 40% → 100% (6s) — slow release back */
+  100% { transform: scale(1.00); opacity: 0.85; }
 }
 
 .hero__overlay {
@@ -795,19 +799,98 @@
   50%      { transform: scaleY(1);   opacity: 1;   }
 }
 
-/* Decorative floating orbs */
-.hero__leaf {
+/* Organic morphing blobs (replace geometric leaf) */
+.hero__blob {
   position: absolute;
-  opacity: 0.35;
+  width: clamp(260px, 32vw, 420px);
+  height: auto;
+  opacity: 0.4;
   z-index: 0;
-  animation: float 12s ease-in-out infinite;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  animation: blobDrift 22s ease-in-out infinite;
+  will-change: transform;
 }
-.hero__leaf--left  { bottom: -30px; left: -40px; transform: rotate(-15deg); }
-.hero__leaf--right { top: 15%; right: -40px; animation-delay: -6s; }
+.hero__blob--left  { bottom: -8%; left: -10%; }
+.hero__blob--right { top: 8%; right: -12%; animation-delay: -11s; animation-duration: 28s; }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0) rotate(-15deg); }
-  50%      { transform: translateY(-20px) rotate(-10deg); }
+@keyframes blobDrift {
+  0%, 100% { transform: translate(0, 0) rotate(0deg)   scale(1); }
+  33%      { transform: translate(2%, -3%) rotate(6deg)  scale(1.04); }
+  66%      { transform: translate(-2%, 2%) rotate(-5deg) scale(0.97); }
+}
+
+/* =========================================================
+   Breathing guide orb — 4-7-8 micro-tool
+   ========================================================= */
+.breathing-orb {
+  position: absolute;
+  bottom: var(--space-10);
+  right: clamp(var(--space-6), 5vw, var(--space-14));
+  width: 140px;
+  height: 140px;
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.breathing-orb__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-full);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.28), rgba(255,255,255,0.04) 60%),
+    radial-gradient(circle at 70% 80%, rgba(212,168,83,0.35), transparent 65%);
+  box-shadow:
+    inset 0 0 30px rgba(255,255,255,0.2),
+    0 0 40px rgba(212,168,83,0.3),
+    0 0 80px rgba(160,103,77,0.25);
+  border: 1px solid rgba(255,255,255,0.2);
+  animation: breath478 19s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+.breathing-orb__label {
+  position: relative;
+  z-index: 1;
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  letter-spacing: var(--letter-spacing-eyebrow);
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 1.4;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+  animation: breath478Label 19s ease-in-out infinite;
+}
+
+.breathing-orb__label small {
+  display: block;
+  opacity: 0.7;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  margin-top: 2px;
+}
+
+/* 4-7-8 cycle: inhale 4s → hold 7s → exhale 8s = 19s */
+@keyframes breath478 {
+  0%                        { transform: scale(0.82); box-shadow: inset 0 0 20px rgba(255,255,255,0.15), 0 0 25px rgba(212,168,83,0.2), 0 0 50px rgba(160,103,77,0.15); }
+  21%  /* inhale complete */ { transform: scale(1.12); box-shadow: inset 0 0 35px rgba(255,255,255,0.25), 0 0 55px rgba(212,168,83,0.4), 0 0 110px rgba(160,103,77,0.35); }
+  57.9%/* hold complete   */ { transform: scale(1.12); box-shadow: inset 0 0 35px rgba(255,255,255,0.25), 0 0 55px rgba(212,168,83,0.4), 0 0 110px rgba(160,103,77,0.35); }
+  100% /* exhale complete */ { transform: scale(0.82); box-shadow: inset 0 0 20px rgba(255,255,255,0.15), 0 0 25px rgba(212,168,83,0.2), 0 0 50px rgba(160,103,77,0.15); }
+}
+
+@keyframes breath478Label {
+  0%,   20.99% { content: 'Inhale'; }
+  21%,  57.89% { content: 'Hold'; }
+  58%,  99.99% { content: 'Exhale'; }
+}
+
+@media (max-width: 768px) {
+  .breathing-orb { width: 110px; height: 110px; bottom: var(--space-20); right: var(--space-4); }
 }
 
 /* =========================================================

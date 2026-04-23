@@ -89,9 +89,36 @@
       <div class="hero__scroll-hint" aria-hidden="true">
         <span data-i18n="hero.scroll">scroll</span>
       </div>
-      <!-- Decorative floating leaf -->
-      <svg class="hero__leaf hero__leaf--left" width="160" height="260" viewBox="0 0 120 200" fill="none" aria-hidden="true">
-        <path d="M60 0C60 0 0 60 0 120C0 153.137 26.863 180 60 180C93.137 180 120 153.137 120 120C120 60 60 0 60 0Z" fill="rgba(212,168,83,0.18)"/>
+
+      <!-- 4-7-8 breathing guide orb -->
+      <div class="breathing-orb" role="img" aria-label="4-7-8 breathing guide">
+        <div class="breathing-orb__ring"></div>
+        <div class="breathing-orb__label" data-breathing-label>
+          <span data-breathing-text data-i18n="hero.breathe.inhale">Inhale</span>
+          <small data-i18n="hero.breathe.caption">4 · 7 · 8</small>
+        </div>
+      </div>
+
+      <!-- Organic morphing blobs (replaces geometric leaf) -->
+      <svg class="hero__blob hero__blob--left" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+        <path fill="rgba(212,168,83,0.55)">
+          <animate attributeName="d" dur="14s" repeatCount="indefinite"
+            values="
+              M421,331Q391,412,308,441Q225,470,158,410Q91,350,114,264Q137,178,219,148Q301,118,372,166Q443,214,433,272Q423,330,421,331Z;
+              M438,319Q418,388,345,431Q272,474,192,436Q112,398,114,305Q116,212,190,163Q264,114,344,144Q424,174,442,247Q460,320,438,319Z;
+              M410,306Q376,372,306,408Q236,444,169,396Q102,348,118,264Q134,180,214,143Q294,106,372,148Q450,190,438,248Q426,306,410,306Z;
+              M421,331Q391,412,308,441Q225,470,158,410Q91,350,114,264Q137,178,219,148Q301,118,372,166Q443,214,433,272Q423,330,421,331Z" />
+        </path>
+      </svg>
+      <svg class="hero__blob hero__blob--right" viewBox="0 0 600 600" fill="none" aria-hidden="true">
+        <path fill="rgba(160,103,77,0.45)">
+          <animate attributeName="d" dur="18s" repeatCount="indefinite"
+            values="
+              M436,312Q414,374,349,416Q284,458,201,424Q118,390,124,299Q130,208,208,168Q286,128,362,160Q438,192,452,252Q466,312,436,312Z;
+              M402,298Q369,356,306,402Q243,448,171,404Q99,360,121,275Q143,190,222,150Q301,110,378,146Q455,182,450,240Q445,298,402,298Z;
+              M420,325Q393,394,317,426Q241,458,167,412Q93,366,113,280Q133,194,213,152Q293,110,372,152Q451,194,448,259Q445,324,420,325Z;
+              M436,312Q414,374,349,416Q284,458,201,424Q118,390,124,299Q130,208,208,168Q286,128,362,160Q438,192,452,252Q466,312,436,312Z" />
+        </path>
       </svg>
     </section>
 

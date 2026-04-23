@@ -23,7 +23,13 @@
     "subtitle": "We provide comprehensive psychotherapeutic support in a warm and welcoming environment, tailored to the needs of every individual and couple.",
     "cta_contact": "Contact us",
     "cta_learn": "Learn more",
-    "scroll": "Scroll"
+    "scroll": "Scroll",
+    "breathe": {
+      "inhale": "Inhale",
+      "hold": "Hold",
+      "exhale": "Exhale",
+      "caption": "4 · 7 · 8"
+    }
   },
   "about": {
     "title": "About us",
