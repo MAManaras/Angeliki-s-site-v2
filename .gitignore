@@ -1,0 +1,15 @@
+# Claude Code local config & skill assets (not part of the site)
+.claude/
+.claude-plugin/
+src/
+skill.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.vscode/
+.idea/
+
+# Logs
+*.log

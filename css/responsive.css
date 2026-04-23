@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Responsive — Additional responsive adjustments
+   ========================================================================== */
+
+/* Mobile: 0-599px */
+@media (max-width: 599px) {
+  :root {
+    --section-padding: var(--space-12) 0;
+    --container-padding: var(--space-4);
+  }
+
+  .section__header {
+    margin-bottom: var(--space-10);
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+  }
+}
+
+/* Tablet: 600-899px */
+@media (min-width: 600px) and (max-width: 899px) {
+  :root {
+    --section-padding: var(--space-16) 0;
+  }
+}
+
+/* Desktop: 900px+ */
+@media (min-width: 900px) {
+  :root {
+    --container-padding: var(--space-8);
+  }
+}
