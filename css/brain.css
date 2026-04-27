@@ -5,9 +5,19 @@
 .brain-visual {
   position: relative;
   /* Explicit size so it pushes its flex parent instead of collapsing. */
-  width: clamp(260px, 60vw, 420px);
-  height: clamp(260px, 60vw, 420px);
+  width: clamp(320px, 60vw, 520px);
+  height: clamp(320px, 60vw, 520px);
   margin: 0 auto;
+  /* Override section--alt warm bg locally with the cream gradient the
+     prototype was tuned against, so the dark halo + brain glow have the
+     right contrast. */
+  background:
+    radial-gradient(ellipse at center,
+      rgba(253, 248, 243, 1) 0%,
+      rgba(245, 234, 217, 1) 60%,
+      rgba(232, 215, 191, 1) 100%);
+  border-radius: 50%;
+  box-shadow: 0 12px 40px -12px rgba(35, 27, 23, 0.18);
 }
 
 /* Dark warm halo behind the brain so the electric pulses have something
@@ -43,7 +53,7 @@
 
 @media (max-width: 720px) {
   .brain-visual {
-    width: clamp(240px, 72vw, 340px);
-    height: clamp(240px, 72vw, 340px);
+    width: clamp(280px, 80vw, 400px);
+    height: clamp(280px, 80vw, 400px);
   }
 }
