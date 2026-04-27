@@ -47,12 +47,15 @@
     });
   });
 
-  /* ---------- 4-7-8 breathing orb label sync ----------
-     Cycle total 19s: Inhale 4s → Hold 7s → Exhale 8s. */
+  /* ---------- 4-2-6 breathing orb label sync ----------
+     Cycle total 12s: Inhale 4s → Hold 2s → Exhale 6s. */
   var orbText = document.querySelector('[data-breathing-text]');
   if (orbText) {
     var phaseKeys = ['inhale', 'hold', 'exhale'];
-    var phaseDurations = [4000, 7000, 8000]; // ms
+    var CYCLE = 12000;            // ms
+    var INHALE_END = 4000;        // 0 → 4s
+    var HOLD_END   = 6000;        // 4 → 6s
+    // exhale: 6 → 12s
     var cycleStart = performance.now();
     var currentPhase = -1;
     function i18nText(key) {
@@ -64,15 +67,15 @@
       // Fallback based on current document language
       var isEl = (document.documentElement.lang || 'el').indexOf('el') === 0;
       var fallback = {
-        inhale: isEl ? 'Εισπνοή' : 'Inhale',
-        hold:   isEl ? 'Κράτηση' : 'Hold',
-        exhale: isEl ? 'Εκπνοή'  : 'Exhale'
+        inhale: isEl ? 'Εισπνέω' : 'Inhaling',
+        hold:   isEl ? 'Κρατώ'   : 'Holding',
+        exhale: isEl ? 'Εκπνέω'  : 'Exhaling'
       };
       return fallback[key];
     }
     function tick(now) {
-      var elapsed = (now - cycleStart) % 19000;
-      var phase = elapsed < 4000 ? 0 : elapsed < 11000 ? 1 : 2;
+      var elapsed = (now - cycleStart) % CYCLE;
+      var phase = elapsed < INHALE_END ? 0 : elapsed < HOLD_END ? 1 : 2;
       if (phase !== currentPhase) {
         currentPhase = phase;
         orbText.textContent = i18nText(phaseKeys[phase]);

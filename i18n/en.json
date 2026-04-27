@@ -25,10 +25,10 @@
     "cta_learn": "Learn more",
     "scroll": "Scroll",
     "breathe": {
-      "inhale": "Inhale",
-      "hold": "Hold",
-      "exhale": "Exhale",
-      "caption": "4 · 7 · 8"
+      "inhale": "Inhaling",
+      "hold": "Holding",
+      "exhale": "Exhaling",
+      "caption": "4 · 2 · 6"
     }
   },
   "about": {
