@@ -20,13 +20,13 @@
       aspect-ratio: 1 / 1;
     }
     .halo {
-      position: absolute; inset: -10%;
+      position: absolute; inset: 6%;
       background: radial-gradient(
         circle at center,
-        rgba(31, 24, 20, 0.68) 0%,
-        rgba(31, 24, 20, 0.42) 32%,
-        rgba(31, 24, 20, 0.18) 55%,
-        rgba(31, 24, 20, 0.00) 72%
+        rgba(31, 24, 20, 0.62) 0%,
+        rgba(31, 24, 20, 0.36) 28%,
+        rgba(31, 24, 20, 0.14) 48%,
+        rgba(31, 24, 20, 0.00) 65%
       );
       pointer-events: none;
     }
@@ -66,7 +66,7 @@
   </div>
 
   <script type="module">
-    import { initBrain } from '../js/brain.js';
+    import { initBrain } from '../js/brain.js?v=8';
     initBrain(document.getElementById('brainCanvas'));
     document.getElementById('status').textContent = 'live';
   </script>

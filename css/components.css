@@ -805,7 +805,7 @@
 /* Scroll hint */
 .hero__scroll-hint {
   position: absolute;
-  bottom: var(--space-8);
+  bottom: var(--space-3);
   left: 50%;
   transform: translateX(-50%);
   color: var(--color-beige-200);
@@ -813,10 +813,10 @@
   letter-spacing: var(--letter-spacing-eyebrow);
   text-transform: uppercase;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse; /* line on top, label at bottom */
   align-items: center;
   gap: var(--space-2);
-  opacity: 0.8;
+  opacity: 0.7;
   pointer-events: none;
   z-index: 1;
 }
@@ -824,7 +824,7 @@
 .hero__scroll-hint::after {
   content: '';
   width: 1px;
-  height: 40px;
+  height: 56px; /* longer line acts as the buffer between buttons and label */
   background: linear-gradient(180deg, transparent, var(--color-beige-200));
   animation: scrollLine 2.2s ease-in-out infinite;
   transform-origin: top center;

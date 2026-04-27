@@ -44,26 +44,42 @@ function noise3(x, y, z) {
 }
 
 function shellPosition(dir) {
-  const baseX = 1.18;
-  const baseY = 0.96 - 0.05 * Math.max(0, -dir.y);
-  const baseZ = 1.36;
+  // Brain-like proportions: wider (X) and longer (Z) than tall (Y).
+  // Slight forward bulge for the frontal lobe; gentle squash on the bottom.
+  const baseX = 1.30;
+  const baseY = 0.84;
+  const baseZ = 1.46;
   const p = new THREE.Vector3(dir.x * baseX, dir.y * baseY, dir.z * baseZ);
 
-  const n1 = noise3(p.x * 2.2, p.y * 2.2, p.z * 2.2) * 0.07;
-  const n2 = noise3(p.x * 5.3 + 10, p.y * 5.3, p.z * 5.3 - 3) * 0.028;
-  const n3 = noise3(p.x * 9.7 - 2, p.y * 9.7 + 5, p.z * 9.7) * 0.013;
-  const folds = n1 + n2 + n3;
+  // Frontal lobe: round out front (positive Z) slightly more
+  const frontal = Math.max(0, p.z) * 0.06;
+  p.z += frontal;
 
-  const topWeight = Math.max(0, (p.y + 0.08) * 1.3);
-  const fissure = Math.exp(-Math.pow(p.x / 0.06, 2)) * topWeight * 0.17;
+  // Smooth, low-frequency surface folds. High-frequency layers are kept
+  // very small so the icosphere doesn't sprout spiky vertex peaks.
+  const n1 = noise3(p.x * 2.0, p.y * 2.0, p.z * 2.0) * 0.055;
+  const n2 = noise3(p.x * 4.6 + 10, p.y * 4.6, p.z * 4.6 - 3) * 0.014;
+  const n3 = noise3(p.x * 8.5 - 2, p.y * 8.5 + 5, p.z * 8.5) * 0.004;
 
+  // Attenuate folds near the top so the crown stays smooth and dome-like.
+  // (this is what was causing the pyramidal peaks)
+  const topAtten = 1 - Math.max(0, Math.min(1, (p.y - 0.30) / 0.55)) * 0.95;
+  const folds = (n1 + n2 + n3) * topAtten;
+
+  // Central longitudinal fissure between the two hemispheres
+  const topWeight = Math.max(0, (p.y + 0.05) * 1.15);
+  const fissure = Math.exp(-Math.pow(p.x / 0.07, 2)) * topWeight * 0.10;
+
+  // Subtle lateral depression along the temporal sides
   const latSide = Math.abs(p.x) > 0.6 ? 1 : 0;
-  const lateral = Math.exp(-Math.pow((p.y - 0.0) / 0.14, 2)) * latSide * 0.04;
+  const lateral = Math.exp(-Math.pow((p.y - 0.0) / 0.14, 2)) * latSide * 0.035;
 
-  const dxC = p.x, dyC = p.y + 0.45, dzC = p.z + 0.6;
-  const cer = 0.14 * Math.exp(-(dxC * dxC * 4.5 + dyC * dyC * 6 + dzC * dzC * 6));
+  // Cerebellum-like bulge at the lower-back
+  const dxC = p.x, dyC = p.y + 0.42, dzC = p.z + 0.55;
+  const cer = 0.10 * Math.exp(-(dxC * dxC * 5.0 + dyC * dyC * 7 + dzC * dzC * 7));
 
-  const bottomFront = Math.max(0, -p.y - 0.4) * Math.max(0, p.z - 0.4) * 0.12;
+  // Tuck under the brain at the lower-front (orbital plane)
+  const bottomFront = Math.max(0, -p.y - 0.38) * Math.max(0, p.z - 0.35) * 0.10;
 
   const disp = folds - fissure - lateral + cer - bottomFront;
   p.addScaledVector(dir, disp);
@@ -139,11 +155,11 @@ export function initBrain(container, opts = {}) {
   camera.position.set(0, 0.35, cfg.camZ);
   camera.lookAt(0, 0, 0);
 
-  // root (rotates)
+  // root (rotates) — brain only, no head silhouette
   const root = new THREE.Group();
   scene.add(root);
 
-  // ----- shell mesh -----
+  // ----- brain shell mesh -----
   const shellGeo = new THREE.IcosahedronGeometry(1, cfg.subdiv);
   {
     const pos = shellGeo.attributes.position;
@@ -169,35 +185,9 @@ export function initBrain(container, opts = {}) {
     color: COL.shellAmber,
     wireframe: true,
     transparent: true,
-    opacity: 0.16,
+    opacity: 0.06,
     depthWrite: false,
   })));
-
-  // ----- brain stem -----
-  {
-    const stemGeo = new THREE.CylinderGeometry(0.09, 0.12, 0.55, 16, 6, true);
-    const pAttr = stemGeo.attributes.position;
-    for (let i = 0; i < pAttr.count; i++) {
-      const y = pAttr.getY(i);
-      const t = (y + 0.275) / 0.55;
-      const forwardBend = (1 - t) * 0.1;
-      pAttr.setZ(i, pAttr.getZ(i) + forwardBend);
-    }
-    stemGeo.computeVertexNormals();
-
-    const stemGroup = new THREE.Group();
-    stemGroup.position.set(0, -0.65, -0.25);
-    stemGroup.add(new THREE.Mesh(stemGeo, new THREE.MeshBasicMaterial({
-      color: COL.shellCream, transparent: true, opacity: 0.16,
-      side: THREE.DoubleSide, depthWrite: false,
-      blending: THREE.AdditiveBlending,
-    })));
-    stemGroup.add(new THREE.Mesh(stemGeo, new THREE.MeshBasicMaterial({
-      color: COL.shellAmber, wireframe: true, transparent: true,
-      opacity: 0.22, depthWrite: false,
-    })));
-    root.add(stemGroup);
-  }
 
   // ----- interior neurons -----
   const glowTex = makeGlowTexture(0xffffff);
@@ -300,7 +290,7 @@ export function initBrain(container, opts = {}) {
     const g = new THREE.BufferGeometry();
     g.setAttribute('position', new THREE.Float32BufferAttribute(arr, 3));
     root.add(new THREE.LineSegments(g, new THREE.LineBasicMaterial({
-      color: 0xB8A28A, transparent: true, opacity: 0.22,
+      color: 0xB8A28A, transparent: true, opacity: 0.15,
       depthWrite: false, blending: THREE.AdditiveBlending,
     })));
   }

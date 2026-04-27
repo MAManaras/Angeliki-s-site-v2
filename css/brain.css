@@ -14,13 +14,13 @@
    dim to glow against. Fades organically into the page background. */
 .brain-visual__halo {
   position: absolute;
-  inset: -12%;
+  inset: 6%;
   background: radial-gradient(
     circle at center,
-    rgba(31, 24, 20, 0.70) 0%,
-    rgba(31, 24, 20, 0.46) 30%,
-    rgba(31, 24, 20, 0.20) 55%,
-    rgba(31, 24, 20, 0.00) 72%
+    rgba(31, 24, 20, 0.62) 0%,
+    rgba(31, 24, 20, 0.36) 28%,
+    rgba(31, 24, 20, 0.14) 48%,
+    rgba(31, 24, 20, 0.00) 65%
   );
   pointer-events: none;
   z-index: 0;
