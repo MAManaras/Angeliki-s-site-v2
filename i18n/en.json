@@ -18,7 +18,7 @@
   },
   "hero": {
     "title": "A safe space\nfor you",
-    "subtitle": "Comprehensive psychotherapeutic support is provided in a warm and welcoming environment, tailored to the needs of every individual.",
+    "subtitle": "Comprehensive psychotherapeutic support is provided, in a warm and welcoming environment, tailored to the needs of every individual.",
     "cta_contact": "Contact me",
     "cta_learn": "Learn more",
     "scroll": "Scroll",
@@ -32,7 +32,7 @@
   "about": {
     "title": "About me",
     "lead": "My practice was created to provide a safe, warm and professional framework for psychotherapeutic support.",
-    "text": "I believe that every person deserves access to quality mental health care. As an experienced mental health professional, I work with respect, confidentiality and scientific rigor. I offer individual psychotherapy, couple therapy and online sessions, tailored to the unique needs of each person.",
+    "text": "I believe that every person deserves access to quality mental health care. As a mental health professional, I work with respect, confidentiality and scientific rigor. I offer individual psychotherapy, in-person and online, tailored to the unique needs of each person.",
     "cta": "More about me"
   },
   "services": {
@@ -41,11 +41,7 @@
     "learn_more": "Learn more",
     "individual": {
       "title": "Individual Psychotherapy",
-      "desc": "A safe framework for self-awareness and personal growth for adults, children and adolescents. The therapeutic process is adapted to the unique needs of each individual."
-    },
-    "couple": {
-      "title": "Couple Therapy",
-      "desc": "Supporting couples in improving communication, resolving conflicts and strengthening their relationship through a structured therapeutic framework."
+      "desc": "A safe framework for self-awareness and personal growth for adults. The therapeutic process is adapted to the unique needs of each individual."
     },
     "online": {
       "title": "Online Sessions",
@@ -62,7 +58,7 @@
       "role": "Psychologist — Cognitive Behavioral Psychotherapist",
       "credentials": "BSc Psychology, MSc Early Intervention in Psychosis, Specialization in Cognitive Behavioral Therapy",
       "bio": "Angeliki Apostolopoulou is a licensed Psychologist and Cognitive Behavioral Psychotherapist, deeply devoted to mental health and well-being. A graduate of the Psychology Department at the National and Kapodistrian University of Athens, she completed her master's degree in 'Early Intervention in Psychosis' at the NKUA Medical School and specializes in Cognitive Behavioral Therapy through the Society for Cognitive Behavioral Studies.",
-      "bio2": "With rich clinical experience in providing psychotherapy sessions for adolescents and adults, Angeliki has worked in recognized mental health centers and psychosocial rehabilitation facilities. Her approach is characterized by empathy, scientific precision and genuine interest in every individual.",
+      "bio2": "With rich clinical experience in providing psychotherapy sessions for adults, Angeliki has worked in recognized mental health centers and psychosocial rehabilitation facilities. Her approach is characterized by empathy, scientific precision and genuine interest in every individual.",
       "bio3": "Beyond clinical practice, Angeliki is an active speaker at national conferences on psychiatry and autism, while she holds additional training in Dance Movement Psychotherapy and Dialectical Behavior Therapy (DBT) — reflecting a holistic and multidimensional approach to psychotherapy."
     }
   },
