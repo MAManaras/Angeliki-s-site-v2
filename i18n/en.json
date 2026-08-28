@@ -1,9 +1,9 @@
 {
   "meta": {
-    "title": "Psychotherapy Center — Home"
+    "title": "Angeliki Apostolopoulou — Home"
   },
   "site": {
-    "name": "[Psychotherapy Center]"
+    "name": "Angeliki Apostolopoulou"
   },
   "a11y": {
     "skip": "Skip to content"
@@ -11,17 +11,15 @@
   "nav": {
     "home": "Home",
     "about": "About",
-    "founders": "Founders",
+    "founders": "Bio",
     "services": "Services",
-    "team": "Team",
     "faq": "FAQ",
     "contact": "Contact"
   },
   "hero": {
-    "eyebrow": "Psychotherapy Center",
     "title": "A safe space\nfor you",
-    "subtitle": "We provide comprehensive psychotherapeutic support in a warm and welcoming environment, tailored to the needs of every individual and couple.",
-    "cta_contact": "Contact us",
+    "subtitle": "Comprehensive psychotherapeutic support is provided in a warm and welcoming environment, tailored to the needs of every individual.",
+    "cta_contact": "Contact me",
     "cta_learn": "Learn more",
     "scroll": "Scroll",
     "breathe": {
@@ -32,14 +30,14 @@
     }
   },
   "about": {
-    "title": "About us",
-    "lead": "Our center was created to provide a safe, warm and professional framework for psychotherapeutic support.",
-    "text": "We believe that every person deserves access to quality mental health care. Our team consists of experienced mental health professionals who work with respect, confidentiality and scientific rigor. We offer individual psychotherapy, couple therapy and online sessions, tailored to the unique needs of each person.",
-    "cta": "More about us"
+    "title": "About me",
+    "lead": "My practice was created to provide a safe, warm and professional framework for psychotherapeutic support.",
+    "text": "I believe that every person deserves access to quality mental health care. As an experienced mental health professional, I work with respect, confidentiality and scientific rigor. I offer individual psychotherapy, couple therapy and online sessions, tailored to the unique needs of each person.",
+    "cta": "More about me"
   },
   "services": {
-    "title": "Our Services",
-    "subtitle": "We offer specialized mental health services tailored to your needs.",
+    "title": "My Services",
+    "subtitle": "I offer specialized mental health services tailored to your needs.",
     "learn_more": "Learn more",
     "individual": {
       "title": "Individual Psychotherapy",
@@ -54,25 +52,11 @@
       "desc": "Psychotherapy from the comfort of your own space via secure video call. An ideal option for those who are far away or prefer the flexibility of online meetings."
     }
   },
-  "team": {
-    "title": "Our Team",
-    "subtitle": "Experienced mental health professionals dedicated to your well-being.",
-    "cta": "Meet our team",
-    "member1": {
-      "role": "Psychologist — CBT Psychotherapist",
-      "bio": "Co-founder of the center. Specializing in Cognitive Behavioral Therapy for adolescents and adults."
-    },
-    "member2": {
-      "name": "[Full Name]",
-      "role": "[Specialty]",
-      "bio": "[Brief bio]"
-    }
-  },
   "founders": {
-    "title": "Our Founders",
-    "subtitle": "The vision behind our center.",
+    "title": "Bio",
+    "subtitle": "My path and approach.",
     "cta_title": "Book an appointment",
-    "cta_text": "We are here to help you. Contact us.",
+    "cta_text": "I am here to help you. Contact me.",
     "angeliki": {
       "name": "Angeliki Apostolopoulou",
       "role": "Psychologist — Cognitive Behavioral Psychotherapist",
@@ -80,12 +64,6 @@
       "bio": "Angeliki Apostolopoulou is a licensed Psychologist and Cognitive Behavioral Psychotherapist, deeply devoted to mental health and well-being. A graduate of the Psychology Department at the National and Kapodistrian University of Athens, she completed her master's degree in 'Early Intervention in Psychosis' at the NKUA Medical School and specializes in Cognitive Behavioral Therapy through the Society for Cognitive Behavioral Studies.",
       "bio2": "With rich clinical experience in providing psychotherapy sessions for adolescents and adults, Angeliki has worked in recognized mental health centers and psychosocial rehabilitation facilities. Her approach is characterized by empathy, scientific precision and genuine interest in every individual.",
       "bio3": "Beyond clinical practice, Angeliki is an active speaker at national conferences on psychiatry and autism, while she holds additional training in Dance Movement Psychotherapy and Dialectical Behavior Therapy (DBT) — reflecting a holistic and multidimensional approach to psychotherapy."
-    },
-    "founder2": {
-      "name": "[Full Name]",
-      "role": "[Specialty]",
-      "credentials": "[Qualifications]",
-      "bio": "[Second founder's biography. Coming soon.]"
     }
   },
   "faq": {
@@ -101,24 +79,24 @@
     },
     "q3": {
       "question": "Can I have online sessions?",
-      "answer": "Yes, we offer online sessions via secure video call. Online sessions are equally effective and ideal for those who are far away or prefer flexibility."
+      "answer": "Yes, I offer online sessions via secure video call. Online sessions are equally effective and ideal for those who are far away or prefer flexibility."
     },
     "q4": {
       "question": "How can I book a first appointment?",
-      "answer": "You can contact us by phone, email or through the contact form on our website. We will guide you through every step."
+      "answer": "You can contact me by phone, email or through the contact form on the site. I will guide you through every step."
     },
     "q5": {
       "question": "Are sessions confidential?",
-      "answer": "Absolutely. Confidentiality is a fundamental principle of our work. Everything discussed in the context of therapy remains strictly confidential, in accordance with the code of ethics."
+      "answer": "Absolutely. Confidentiality is a fundamental principle of my work. Everything discussed in the context of therapy remains strictly confidential, in accordance with the code of ethics."
     },
     "q6": {
       "question": "What is the cost of sessions?",
-      "answer": "The cost depends on the type of service. Contact us for detailed information. We believe in the accessibility of mental health and offer flexible options."
+      "answer": "The cost depends on the type of service. Contact me for detailed information. I believe in the accessibility of mental health and offer flexible options."
     }
   },
   "contact": {
     "title": "Contact",
-    "subtitle": "We are here for you. Fill in the form or contact us directly.",
+    "subtitle": "I am here for you. Fill in the form or contact me directly.",
     "form": {
       "name": "Full Name *",
       "name_placeholder": "Your full name",
@@ -132,10 +110,10 @@
       "service": "Service",
       "service_default": "Select a service",
       "message": "Message *",
-      "message_placeholder": "Tell us how we can help you...",
+      "message_placeholder": "Tell me how I can help you...",
       "message_error": "Please enter your message.",
       "submit": "Send",
-      "success": "Your message was sent successfully! We will contact you shortly."
+      "success": "Your message was sent successfully! I will contact you shortly."
     },
     "info": {
       "address_label": "Address",
@@ -151,7 +129,7 @@
     "tagline": "A safe space for you.",
     "nav_heading": "Navigation",
     "services_heading": "Services",
-    "social_heading": "Follow us",
-    "copyright": "© 2026 [Psychotherapy Center]. All rights reserved."
+    "social_heading": "Follow me",
+    "copyright": "© 2026 Angeliki Apostolopoulou. All rights reserved."
   }
 }
